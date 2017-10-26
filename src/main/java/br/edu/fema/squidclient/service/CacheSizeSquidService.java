@@ -23,7 +23,7 @@ public class CacheSizeSquidService {
     }
 
     public boolean criar(CacheSize cacheSize) {
-        Builder request = ClientBuilder.newClient().target(LINK_RAIZ + "/cache/criar").request().accept(MediaType.APPLICATION_JSON);
+        Builder request = ClientBuilder.newClient().target(LINK_RAIZ + "/cache/criar").request();
         Entity<CacheSize> entity = Entity.entity(cacheSize, MediaType.APPLICATION_JSON);
         Response response = request.buildPost(entity).invoke();
         return response.getStatusInfo() == Status.ACCEPTED;
@@ -32,6 +32,6 @@ public class CacheSizeSquidService {
     public boolean reset() {
         Builder request = ClientBuilder.newClient().target(LINK_RAIZ + "/cache/reset").request();
         return request.buildPost(Entity.text("")).invoke().getStatusInfo() == Status.OK;
-
     }
+
 }
