@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.fema.edu.squidclient.telas;
+package br.edu.fema.squidclient.telas;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -35,11 +35,8 @@ public class Inicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Squidclient");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText(" URL servidor");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
-        getContentPane().add(txtUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 210, -1));
 
         btnAceitar.setText("Aceitar");
         btnAceitar.setActionCommand("btnAceitar");
@@ -48,7 +45,31 @@ public class Inicial extends javax.swing.JFrame {
                 btnAceitarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAceitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(120, 120, 120)
+                                .addComponent(btnAceitar))
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1)
+                                .addGap(13, 13, 13)
+                                .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(btnAceitar))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

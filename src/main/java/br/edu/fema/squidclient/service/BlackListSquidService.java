@@ -11,7 +11,7 @@ import java.util.List;
 public class BlackListSquidService {
     private final String LINK_RAIZ;
 
-    private BlackListSquidService(String url) {
+    public BlackListSquidService(String url) {
         this.LINK_RAIZ = url;
     }
 

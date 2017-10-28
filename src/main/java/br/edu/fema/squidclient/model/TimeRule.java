@@ -63,4 +63,10 @@ public class TimeRule {
     public int hashCode() {
         return Objects.hash(begin, end, deny, nome);
     }
+
+    @Override
+    public String toString() {
+        return "TimeRule{" + "begin=" + begin + ", end=" + end + ", deny=" + deny + ", nome=" + nome + '}';
+    }
+    
 }

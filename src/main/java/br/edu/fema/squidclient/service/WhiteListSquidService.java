@@ -11,7 +11,7 @@ import java.util.List;
 public class WhiteListSquidService {
     private final String LINK_RAIZ;
 
-    private WhiteListSquidService(String url) {
+    public WhiteListSquidService(String url) {
         this.LINK_RAIZ = url;
     }
 
