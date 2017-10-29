@@ -1,11 +1,18 @@
 package br.edu.fema.squidclient.model;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class AuthUser {
     private Integer codigo;
     private String username;
     private String password;
+
+    public AuthUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.codigo = new Random().nextInt(1000);
+    }
 
     public Integer getCodigo() {
         return codigo;

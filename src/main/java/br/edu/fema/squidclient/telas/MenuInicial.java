@@ -5,27 +5,27 @@
  */
 package br.edu.fema.squidclient.telas;
 
-import br.edu.fema.squidclient.service.*;
-
-import javax.swing.*;
+import br.edu.fema.squidclient.service.AuthUserSquidService;
+import br.edu.fema.squidclient.service.BlackListSquidService;
+import br.edu.fema.squidclient.service.CacheSizeSquidService;
+import br.edu.fema.squidclient.service.FileExtensionSquidService;
+import br.edu.fema.squidclient.service.TimeRuleSquidService;
+import br.edu.fema.squidclient.service.WhiteListSquidService;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 
-public class MenuPrincipal extends javax.swing.JFrame {
-
+public class MenuInicial extends javax.swing.JFrame {
+    
     private final AuthUserSquidService authUserService;
     private final BlackListSquidService blackListService;
     private final CacheSizeSquidService cacheSquidService;
     private final FileExtensionSquidService fileExtService;
     private final TimeRuleSquidService timeRuleService;
     private final WhiteListSquidService whiteListService;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem blackListExtFlush;
-    private javax.swing.JMenuItem blackListExtList;
-    private javax.swing.JMenuItem blackListExtRemove;
-    private javax.swing.JMenuItem blackListExtlAdd;
-    private javax.swing.JMenu extBlackList;
-
-    public MenuPrincipal(String url) {
+    private final String url;
+    
+    public MenuInicial(String url) {
+        this.url = url;
         authUserService = new AuthUserSquidService(url);
         blackListService = new BlackListSquidService(url);
         cacheSquidService = new CacheSizeSquidService(url);
@@ -94,9 +94,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ipBlacklistMenu.setText("IP");
 
         blackListIpAdd.setText("Adicionar");
+        blackListIpAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackListIpAddActionPerformed(evt);
+            }
+        });
         ipBlacklistMenu.add(blackListIpAdd);
 
         blackListIpRemove.setText("Remover");
+        blackListIpRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackListIpRemoveActionPerformed(evt);
+            }
+        });
         ipBlacklistMenu.add(blackListIpRemove);
 
         blackListIpList.setText("Listar");
@@ -120,9 +130,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         urlBlackListMenu.setText("URL");
 
         blackListUrlAdd.setText("Adicionar");
+        blackListUrlAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackListUrlAddActionPerformed(evt);
+            }
+        });
         urlBlackListMenu.add(blackListUrlAdd);
 
         blackListUrlRemove.setText("Remover");
+        blackListUrlRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackListUrlRemoveActionPerformed(evt);
+            }
+        });
         urlBlackListMenu.add(blackListUrlRemove);
 
         blackListUrlList.setText("Listar");
@@ -146,6 +166,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         extBlackList.setText("Extensão");
 
         blackListExtlAdd.setText("Adicionar");
+        blackListExtlAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blackListExtlAddActionPerformed(evt);
+            }
+        });
         extBlackList.add(blackListExtlAdd);
 
         blackListExtRemove.setText("Remover");
@@ -177,9 +202,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ipWhiteListMenu.setText("IP");
 
         whiteListIpAdd.setText("Adicionar");
+        whiteListIpAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiteListIpAddActionPerformed(evt);
+            }
+        });
         ipWhiteListMenu.add(whiteListIpAdd);
 
         whiteListIpRemove.setText("Remover");
+        whiteListIpRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiteListIpRemoveActionPerformed(evt);
+            }
+        });
         ipWhiteListMenu.add(whiteListIpRemove);
 
         whiteListIpList.setText("Listar");
@@ -203,9 +238,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         urlWhiteListMenu.setText("URL");
 
         whiteListUrlAdd.setText("Adicionar");
+        whiteListUrlAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiteListUrlAddActionPerformed(evt);
+            }
+        });
         urlWhiteListMenu.add(whiteListUrlAdd);
 
         whiteListUrlRemove.setText("Remover");
+        whiteListUrlRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                whiteListUrlRemoveActionPerformed(evt);
+            }
+        });
         urlWhiteListMenu.add(whiteListUrlRemove);
 
         whiteListUrlList.setText("Listar");
@@ -232,9 +277,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         usuariosMenu.setText("Usuarios");
 
         usuarioAdd.setText("Adicionar");
+        usuarioAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioAddActionPerformed(evt);
+            }
+        });
         usuariosMenu.add(usuarioAdd);
 
         usuarioRemove.setText("Remover");
+        usuarioRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioRemoveActionPerformed(evt);
+            }
+        });
         usuariosMenu.add(usuarioRemove);
 
         usuarioList.setText("Listar");
@@ -258,9 +313,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         timeRuleMenu.setText("Regra de tempo");
 
         timeRuleAdd.setText("Adicionar");
+        timeRuleAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeRuleAddActionPerformed(evt);
+            }
+        });
         timeRuleMenu.add(timeRuleAdd);
 
         timeRuleRemove.setText("Remover");
+        timeRuleRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeRuleRemoveActionPerformed(evt);
+            }
+        });
         timeRuleMenu.add(timeRuleRemove);
 
         timeRuleList.setText("Listar");
@@ -284,6 +349,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cacheMenu.setText("Cache");
 
         cacheSizeAdd.setText("Configurar");
+        cacheSizeAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cacheSizeAddActionPerformed(evt);
+            }
+        });
         cacheMenu.add(cacheSizeAdd);
 
         cacheSizeFlush.setText("Limpar");
@@ -302,15 +372,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 413, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 79, Short.MAX_VALUE)
+            .addGap(0, 55, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void blackListIpAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListIpAddActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = blackListService.addIp(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_blackListIpAddActionPerformed
+
+    private void blackListIpListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListIpListActionPerformed
+        String resultado = blackListService.listIp().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
+        JOptionPane.showMessageDialog(null, resultado);
+    }//GEN-LAST:event_blackListIpListActionPerformed
 
     private void blackListIpFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListIpFlushActionPerformed
         Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
@@ -319,46 +404,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_blackListIpFlushActionPerformed
 
+    private void blackListUrlListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListUrlListActionPerformed
+        String resultado = blackListService.listUrl().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
+        JOptionPane.showMessageDialog(null, resultado);
+    }//GEN-LAST:event_blackListUrlListActionPerformed
+
     private void blackListUrlFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListUrlFlushActionPerformed
         Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
         if (result.equals(JOptionPane.YES_OPTION)) {
             blackListService.flushUrl();
         }
     }//GEN-LAST:event_blackListUrlFlushActionPerformed
-
-    private void whiteListIpFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListIpFlushActionPerformed
-        Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
-        if (result.equals(JOptionPane.YES_OPTION)) {
-            whiteListService.flushIp();
-        }
-    }//GEN-LAST:event_whiteListIpFlushActionPerformed
-
-    private void whiteListUrlFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListUrlFlushActionPerformed
-        Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
-        if (result.equals(JOptionPane.YES_OPTION)) {
-            whiteListService.flushUrl();
-        }
-    }//GEN-LAST:event_whiteListUrlFlushActionPerformed
-
-    private void blackListIpListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListIpListActionPerformed
-        String resultado = blackListService.listIp().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
-        JOptionPane.showMessageDialog(null, resultado);
-    }//GEN-LAST:event_blackListIpListActionPerformed
-
-    private void blackListUrlListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListUrlListActionPerformed
-        String resultado = blackListService.listUrl().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
-        JOptionPane.showMessageDialog(null, resultado);
-    }//GEN-LAST:event_blackListUrlListActionPerformed
-
-    private void whiteListIpListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListIpListActionPerformed
-        String resultado = whiteListService.listIp().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
-        JOptionPane.showMessageDialog(null, resultado);
-    }//GEN-LAST:event_whiteListIpListActionPerformed
-
-    private void whiteListUrlListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListUrlListActionPerformed
-        String resultado = whiteListService.listUrl().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
-        JOptionPane.showMessageDialog(null, resultado);
-    }//GEN-LAST:event_whiteListUrlListActionPerformed
 
     private void blackListExtListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListExtListActionPerformed
         String resultado = fileExtService.listar().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
@@ -371,6 +427,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
             fileExtService.flush();
         }
     }//GEN-LAST:event_blackListExtFlushActionPerformed
+
+    private void whiteListIpListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListIpListActionPerformed
+        String resultado = whiteListService.listIp().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
+        JOptionPane.showMessageDialog(null, resultado);
+    }//GEN-LAST:event_whiteListIpListActionPerformed
+
+    private void whiteListIpFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListIpFlushActionPerformed
+        Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
+        if (result.equals(JOptionPane.YES_OPTION)) {
+            whiteListService.flushIp();
+        }
+    }//GEN-LAST:event_whiteListIpFlushActionPerformed
+
+    private void whiteListUrlListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListUrlListActionPerformed
+        String resultado = whiteListService.listUrl().stream().collect(Collectors.joining("\n", "Resultado da consulta:", ""));
+        JOptionPane.showMessageDialog(null, resultado);
+    }//GEN-LAST:event_whiteListUrlListActionPerformed
+
+    private void whiteListUrlFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListUrlFlushActionPerformed
+        Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
+        if (result.equals(JOptionPane.YES_OPTION)) {
+            whiteListService.flushUrl();
+        }
+    }//GEN-LAST:event_whiteListUrlFlushActionPerformed
 
     private void usuarioListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioListActionPerformed
         String resultado = authUserService.listar().stream().map(au -> au.getCodigo() + " - " + au.getUsername()).collect(Collectors.joining("\n", "Resultado da consulta:", ""));
@@ -395,6 +475,137 @@ public class MenuPrincipal extends javax.swing.JFrame {
             timeRuleService.flush();
         }
     }//GEN-LAST:event_timeRuleFlushActionPerformed
+
+    private void cacheSizeFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cacheSizeFlushActionPerformed
+        Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
+        if (result.equals(JOptionPane.YES_OPTION)) {
+            cacheSquidService.reset();
+        }
+    }//GEN-LAST:event_cacheSizeFlushActionPerformed
+
+    private void blackListUrlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListUrlAddActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = blackListService.addUrl(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_blackListUrlAddActionPerformed
+
+    private void blackListExtlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListExtlAddActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = fileExtService.extensao(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_blackListExtlAddActionPerformed
+
+    private void whiteListIpAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListIpAddActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = whiteListService.addIp(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_whiteListIpAddActionPerformed
+
+    private void whiteListUrlAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListUrlAddActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = whiteListService.addUrl(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_whiteListUrlAddActionPerformed
+
+    private void blackListIpRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListIpRemoveActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = blackListService.removeIp(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_blackListIpRemoveActionPerformed
+
+    private void blackListUrlRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blackListUrlRemoveActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = blackListService.removeUrl(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_blackListUrlRemoveActionPerformed
+
+    private void whiteListIpRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListIpRemoveActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = whiteListService.removeIp(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_whiteListIpRemoveActionPerformed
+
+    private void whiteListUrlRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_whiteListUrlRemoveActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = whiteListService.removeUrl(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_whiteListUrlRemoveActionPerformed
+
+    private void usuarioRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioRemoveActionPerformed
+        try {
+            String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+            boolean sucesso = authUserService.excluir(Integer.valueOf(entrada));
+            if (sucesso) {
+                JOptionPane.showMessageDialog(rootPane, "Removido com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Falhou!");
+            }
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(rootPane, "Numero inválido");
+        }
+    }//GEN-LAST:event_usuarioRemoveActionPerformed
+
+    private void timeRuleRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeRuleRemoveActionPerformed
+        String entrada = JOptionPane.showInputDialog(rootPane, "Informe o valor:");
+        boolean sucesso = timeRuleService.excluir(entrada);
+        if (sucesso) {
+            JOptionPane.showMessageDialog(rootPane, "Removido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falhou!");
+        }
+    }//GEN-LAST:event_timeRuleRemoveActionPerformed
+
+    private void usuarioAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioAddActionPerformed
+       CadastroUsuario cadastroUsuario = new CadastroUsuario(this, true, url);
+       cadastroUsuario.setVisible(true);
+    }//GEN-LAST:event_usuarioAddActionPerformed
+
+    private void cacheSizeAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cacheSizeAddActionPerformed
+        CadastroCache cadastroCache = new CadastroCache(this, true, url);
+    }//GEN-LAST:event_cacheSizeAddActionPerformed
+
+    private void timeRuleAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeRuleAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeRuleAddActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem blackListExtFlush;
+    private javax.swing.JMenuItem blackListExtList;
+    private javax.swing.JMenuItem blackListExtRemove;
+    private javax.swing.JMenuItem blackListExtlAdd;
     private javax.swing.JMenuItem blackListIpAdd;
     private javax.swing.JMenuItem blackListIpFlush;
     private javax.swing.JMenuItem blackListIpList;
@@ -407,13 +618,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu cacheMenu;
     private javax.swing.JMenuItem cacheSizeAdd;
     private javax.swing.JMenuItem cacheSizeFlush;
-
-    private void cacheSizeFlushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cacheSizeFlushActionPerformed
-        Integer result = JOptionPane.showConfirmDialog(null, "Deseja mesmo limpar tudo?", "Deseja mesmo limpar tudo?", JOptionPane.YES_NO_OPTION);
-        if (result.equals(JOptionPane.YES_OPTION)) {
-            cacheSquidService.reset();
-        }
-    }//GEN-LAST:event_cacheSizeFlushActionPerformed
+    private javax.swing.JMenu extBlackList;
     private javax.swing.JMenu ipBlacklistMenu;
     private javax.swing.JMenu ipWhiteListMenu;
     private javax.swing.JMenuBar menuBar;

@@ -76,7 +76,7 @@ public class Inicial extends javax.swing.JFrame {
 
     private void btnAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarActionPerformed
         if(txtUrl.getText() != null && !txtUrl.getText().isEmpty()){
-            MenuPrincipal menuPrincipal = new MenuPrincipal(txtUrl.getText());
+            MenuInicial menuPrincipal = new MenuInicial(txtUrl.getText());
             this.setVisible(false);
             menuPrincipal.setVisible(true);
         } else{

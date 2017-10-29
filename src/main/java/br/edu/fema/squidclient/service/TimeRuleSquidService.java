@@ -24,8 +24,8 @@ public class TimeRuleSquidService {
         return response.getStatusInfo() == Response.Status.OK;
     }
 
-    public boolean excluir(Integer codigo) {
-        Invocation.Builder request = ClientBuilder.newClient().target(LINK_RAIZ + "/time/remove/" + codigo.toString()).request();
+    public boolean excluir(String nome) {
+        Invocation.Builder request = ClientBuilder.newClient().target(LINK_RAIZ + "/time/remove/" + nome).request();
         return request.buildPost(Entity.text("")).invoke().getStatusInfo() == Response.Status.OK;
     }
 
