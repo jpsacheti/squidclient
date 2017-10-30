@@ -594,10 +594,12 @@ public class MenuInicial extends javax.swing.JFrame {
 
     private void cacheSizeAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cacheSizeAddActionPerformed
         CadastroCache cadastroCache = new CadastroCache(this, true, url);
+        cadastroCache.setVisible(true);
     }//GEN-LAST:event_cacheSizeAddActionPerformed
 
     private void timeRuleAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeRuleAddActionPerformed
-        // TODO add your handling code here:
+        CadastroTimeRule cadastroTimeRule = new CadastroTimeRule(this, true, url);
+        cadastroTimeRule.setVisible(true);
     }//GEN-LAST:event_timeRuleAddActionPerformed
 
 

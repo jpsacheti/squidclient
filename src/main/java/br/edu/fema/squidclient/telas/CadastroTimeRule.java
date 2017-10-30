@@ -10,6 +10,7 @@ import br.edu.fema.squidclient.service.TimeRuleSquidService;
 import java.text.ParseException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,24 +36,20 @@ public class CadastroTimeRule extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtInicio = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtFim = new javax.swing.JFormattedTextField();
         checkDeny = new javax.swing.JCheckBox();
         txtNome = new javax.swing.JTextField();
         btnOk = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        txtInicio = new javax.swing.JTextField();
+        txtFim = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        txtInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         jLabel1.setText("Inicio");
 
         jLabel2.setText("Fim");
-
-        txtFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         checkDeny.setText("Negar acesso");
 
@@ -70,32 +67,39 @@ public class CadastroTimeRule extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(checkDeny)
+                                .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(36, 36, 36)
+                            .addComponent(txtFim)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkDeny)
-                            .addComponent(txtFim, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(1, 1, 1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtInicio)
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))
                 .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(txtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,13 +120,11 @@ public class CadastroTimeRule extends javax.swing.JDialog {
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         try {
-            txtInicio.commitEdit();
-            txtFim.commitEdit();
-            if (txtInicio.getValue() == null || txtInicio.getText().isEmpty()) {
+            if (txtInicio.getText() == null || txtInicio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Informe inicio!");
                 return;
             }
-            if (txtFim.getValue() == null || txtFim.getText().isEmpty()) {
+            if (txtFim.getText() == null || txtFim.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane, "Informe fim!");
                 return;
             }
@@ -130,8 +132,8 @@ public class CadastroTimeRule extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Informe nome!");
                 return;
             }
-            LocalTime inicio = LocalTime.parse(String.valueOf(txtInicio.getValue()), DateTimeFormatter.ofPattern("HH:mm"));
-            LocalTime fim = LocalTime.parse(String.valueOf(txtFim.getValue()), DateTimeFormatter.ofPattern("HH:mm"));
+            LocalTime inicio = LocalTime.parse(String.valueOf(txtInicio.getText()), DateTimeFormatter.ofPattern("HH:mm"));
+            LocalTime fim = LocalTime.parse(String.valueOf(txtFim.getText()), DateTimeFormatter.ofPattern("HH:mm"));
             TimeRule regra = new TimeRule();
             regra.setBegin(inicio);
             regra.setEnd(fim);
@@ -142,7 +144,7 @@ public class CadastroTimeRule extends javax.swing.JDialog {
             } else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao cadastrar!");
             }
-        } catch (ParseException pe) {
+        } catch (DateTimeParseException pe) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao interpretar valores");
         }
     }//GEN-LAST:event_btnOkActionPerformed
@@ -154,8 +156,8 @@ public class CadastroTimeRule extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JFormattedTextField txtFim;
-    private javax.swing.JFormattedTextField txtInicio;
+    private javax.swing.JTextField txtFim;
+    private javax.swing.JTextField txtInicio;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

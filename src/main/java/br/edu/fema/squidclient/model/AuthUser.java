@@ -13,6 +13,8 @@ public class AuthUser {
         this.password = password;
         this.codigo = new Random().nextInt(1000);
     }
+    
+    public AuthUser(){}
 
     public Integer getCodigo() {
         return codigo;
